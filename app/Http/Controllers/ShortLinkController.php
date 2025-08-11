@@ -19,8 +19,10 @@ class ShortLinkController extends Controller
         return response()->json($result, 201);
     }
 
-    public function show()
+    public function show($shortlink)
     {
+        $result = ShortLink::where('name', $shortlink)->firstOrFail();
 
+        return redirect($result->url);
     }
 }
